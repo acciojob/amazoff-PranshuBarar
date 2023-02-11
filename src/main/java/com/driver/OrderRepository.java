@@ -40,6 +40,7 @@ public class OrderRepository {
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId){
+        partnerDatabase.get(partnerId).setNumberOfOrders(partnerDatabase.get(partnerId).getNumberOfOrders()+1);
         if(partnerOrderMap.containsKey(partnerId)){
             List<String> orderList = partnerOrderMap.get(partnerId);
             orderList.add(orderId);
