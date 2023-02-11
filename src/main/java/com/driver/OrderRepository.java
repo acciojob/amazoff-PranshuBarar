@@ -118,9 +118,11 @@ public class OrderRepository {
 
     public String getLastDeliveryTimeByPartnerId(String partnerId){
         int latestTime = 0;
-        for(String currOrderId : partnerOrderMap.get(partnerId)){
-            if(orderDatabase.get(currOrderId).getDeliveryTime()>latestTime){
-                latestTime = orderDatabase.get(currOrderId).getDeliveryTime();
+        if(partnerOrderMap.containsKey(partnerId)){
+            for(String currOrderId : partnerOrderMap.get(partnerId)){
+                if(orderDatabase.get(currOrderId).getDeliveryTime()>latestTime){
+                    latestTime = orderDatabase.get(currOrderId).getDeliveryTime();
+                }
             }
         }
         int minute = 0;
