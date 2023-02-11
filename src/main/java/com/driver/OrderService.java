@@ -39,11 +39,11 @@ public class OrderService {
         return orderRepository.getOrderCountByPartnerId(partnerId);
     }
 
-    public List<Order> getOrdersByPartnerId(String partnerId){
+    public List<String> getOrdersByPartnerId(String partnerId){
         return orderRepository.getOrdersByPartnerId(partnerId);
     }
 
-    public List<Order> getAllOrders() {
+    public List<String> getAllOrders() {
         return orderRepository.getAllOrders();
     }
 
@@ -55,8 +55,29 @@ public class OrderService {
        return orderRepository.getOrdersLeftAfterGivenTimeByPartnerId(time,partnerId);
     }
 
-    public int getLastDeliveryTimeByPartnerId(String partnerId){
-        return orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+    public String getLastDeliveryTimeByPartnerId(String partnerId){
+        int time = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+        int minute = 0;
+        for(int i=1; i<=60; i++){
+            if((time - i)%60 == 0){
+                minute = i;
+                break;
+            }
+        }
+        int restOfTime = time - minute;
+        int hours = restOfTime/60;
+        String strhours = Integer.toString(hours);
+        if(hours<10){
+            strhours += "0"+strhours;
+        }
+        String minutes = Integer.toString(minute);
+        if(minute<10){
+            minutes += "0" + minutes;
+        }
+
+        return strhours + ":" + minutes;
+
+
     }
 
     public void deletePartnerById(String partnerId){

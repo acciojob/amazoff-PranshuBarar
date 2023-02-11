@@ -62,23 +62,27 @@ public class OrderRepository {
         return partnerOrderMap.get(partnerId).size();
     }
 
-    public List<Order> getOrdersByPartnerId(String partnerId){
-        List<Order> orderList = new ArrayList<>(); //This list has to be returned after filling
+    public List<String> getOrdersByPartnerId(String partnerId){
+        List<String> orderList = new ArrayList<>(); //This list has to be returned after filling
 
         //Let's first fetch the list (of Strings) of all the orderIds from the partnerOrderMap database
         List<String> orderIdList = partnerOrderMap.get(partnerId);
         for(String order : orderIdList){
-            orderList.add(orderDatabase.get(order));
+            orderList.add(orderDatabase.get(order).getId());
         }
         return orderList;
     }
 
-    public List<Order> getAllOrders(){
+    public List<String> getAllOrders(){
         //Lets fetch all the values from the orderDatabase
         Collection<Order> values = orderDatabase.values();
 
         //Now fill all these values in a list and return it
-        return new ArrayList<>(values);
+        List<String> orderList = new ArrayList<>();
+        for(Order o : values){
+            orderList.add(o.getId());
+        }
+        return orderList;
     }
 
     public int getCountOfUnassignedOrders(){
