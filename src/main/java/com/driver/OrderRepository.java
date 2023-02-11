@@ -125,23 +125,24 @@ public class OrderRepository {
                 }
             }
         }
-        int minute = 0;
-        for(int i=1; i<=60; i++){
-            if((latestTime - i)%60 == 0){
-                minute = i;
-                break;
-            }
-        }
-        int restOfTime = latestTime - minute;
-        int hours = restOfTime/60;
+//        int minute = 0;
+//        for(int i=1; i<=60; i++){
+//            if((latestTime - i)%60 == 0){
+//                minute = i;
+//                break;
+//            }
+//        }
+//        int restOfTime = latestTime - minute;
+        int hours = latestTime/60;
+        int minute = latestTime%60;
 
         String strhours = Integer.toString(hours);
-        if(hours<10){
+        if(strhours.length()==1){
             strhours += "0"+strhours;
         }
 
         String minutes = Integer.toString(minute);
-        if(minute<10){
+        if(minutes.length()==1){
             minutes += "0" + minutes;
         }
         return strhours + ":" + minutes;
