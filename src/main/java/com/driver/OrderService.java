@@ -57,25 +57,8 @@ public class OrderService {
     }
 
     public String getLastDeliveryTimeByPartnerId(String partnerId){
-        int totalTime = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
-        int minute = 0;
-        for(int i=1; i<=60; i++){
-            if((totalTime - i)%60 == 0){
-                minute = i;
-                break;
-            }
-        }
-        int restOfTime = totalTime - minute;
-        int hours = restOfTime/60;
-        String strhours = Integer.toString(hours);
-        if(hours<10){
-            strhours += "0"+strhours;
-        }
-        String minutes = Integer.toString(minute);
-        if(minute<10){
-            minutes += "0" + minutes;
-        }
-        return strhours + ":" + minutes;
+        return orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+
 
 
     }

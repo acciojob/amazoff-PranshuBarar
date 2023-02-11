@@ -116,14 +116,33 @@ public class OrderRepository {
         return count;
     }
 
-    public int getLastDeliveryTimeByPartnerId(String partnerId){
+    public String getLastDeliveryTimeByPartnerId(String partnerId){
         int latestTime = 0;
         for(String currOrderId : partnerOrderMap.get(partnerId)){
             if(orderDatabase.get(currOrderId).getDeliveryTime()>latestTime){
                 latestTime = orderDatabase.get(currOrderId).getDeliveryTime();
             }
         }
-        return latestTime;
+        int minute = 0;
+        for(int i=1; i<=60; i++){
+            if((latestTime - i)%60 == 0){
+                minute = i;
+                break;
+            }
+        }
+        int restOfTime = latestTime - minute;
+        int hours = restOfTime/60;
+
+        String strhours = Integer.toString(hours);
+        if(hours<10){
+            strhours += "0"+strhours;
+        }
+
+        String minutes = Integer.toString(minute);
+        if(minute<10){
+            minutes += "0" + minutes;
+        }
+        return strhours + ":" + minutes;
 
     }
 
