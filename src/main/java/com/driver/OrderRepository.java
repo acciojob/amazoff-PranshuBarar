@@ -18,9 +18,9 @@ public class OrderRepository {
     private Map<String,DeliveryPartner> partnerDatabase;
 
     //Third one is order-partner pair database named as partnerOrderMap
-    private Map<String, List<String>> partnerOrderMap = new HashMap<>();
+    private Map<String, List<String>> partnerOrderMap;
 
-    private Set<String> orderNotAssigned = new HashSet<>();
+    private Set<String> orderNotAssigned;
 
 
     public OrderRepository() {
@@ -48,6 +48,7 @@ public class OrderRepository {
         }
 
         partnerOrderMap.put(partnerId,new ArrayList<>(Arrays.asList(orderId)));
+        orderNotAssigned.remove(orderId);
     }
 
     public Order getOrderById(String orderId){
@@ -126,7 +127,9 @@ public class OrderRepository {
     }
 
     public void deletePartnerById(String partnerId){
-        orderNotAssigned.addAll(partnerOrderMap.get(partnerId));
+        if(!partnerOrderMap.isEmpty()){
+            orderNotAssigned.addAll(partnerOrderMap.get(partnerId));
+        }
         partnerOrderMap.remove(partnerId);
         partnerDatabase.remove(partnerId);
     }
