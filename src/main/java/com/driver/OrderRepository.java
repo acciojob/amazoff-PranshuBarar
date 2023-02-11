@@ -117,13 +117,13 @@ public class OrderRepository {
     }
 
     public int getLastDeliveryTimeByPartnerId(String partnerId){
-        int min = Integer.MIN_VALUE;
+        int latestTime = 0;
         for(String currOrderId : partnerOrderMap.get(partnerId)){
-            if(orderDatabase.get(currOrderId).getDeliveryTime()>min){
-                min = orderDatabase.get(currOrderId).getDeliveryTime();
+            if(orderDatabase.get(currOrderId).getDeliveryTime()>latestTime){
+                latestTime = orderDatabase.get(currOrderId).getDeliveryTime();
             }
         }
-        return min;
+        return latestTime;
 
     }
 

@@ -57,15 +57,15 @@ public class OrderService {
     }
 
     public String getLastDeliveryTimeByPartnerId(String partnerId){
-        int time = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
+        int totalTime = orderRepository.getLastDeliveryTimeByPartnerId(partnerId);
         int minute = 0;
         for(int i=1; i<=60; i++){
-            if((time - i)%60 == 0){
+            if((totalTime - i)%60 == 0){
                 minute = i;
                 break;
             }
         }
-        int restOfTime = time - minute;
+        int restOfTime = totalTime - minute;
         int hours = restOfTime/60;
         String strhours = Integer.toString(hours);
         if(hours<10){
@@ -75,7 +75,6 @@ public class OrderService {
         if(minute<10){
             minutes += "0" + minutes;
         }
-
         return strhours + ":" + minutes;
 
 
