@@ -128,6 +128,7 @@ public class OrderRepository {
     public void deletePartnerById(String partnerId){
         orderNotAssigned.addAll(partnerOrderMap.get(partnerId));
         partnerOrderMap.remove(partnerId);
+        partnerDatabase.remove(partnerId);
     }
 
     public void deleteOrderById(String orderId){
