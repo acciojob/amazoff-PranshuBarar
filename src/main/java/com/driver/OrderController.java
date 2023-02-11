@@ -120,7 +120,7 @@ public class OrderController {
     public ResponseEntity<String> deletePartnerById(@PathVariable String partnerId){
         orderService.deletePartnerById(partnerId);
         //Delete the partnerId
-        //And push all his assigned orders to unassigned orders.
+        //And push all his assigned orders to unassigned orders
 
         return new ResponseEntity<>(partnerId + " removed successfully", HttpStatus.CREATED);
     }
