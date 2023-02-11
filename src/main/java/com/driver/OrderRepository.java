@@ -12,10 +12,10 @@ public class OrderRepository {
     //We require total 3 databases
 
     //First one is order database named as orderDatabase
-    private Map<String,Order> orderDatabase = new HashMap<>();
+    private Map<String,Order> orderDatabase;
 
     //Second one is delivery partner database named as partnerDatabase
-    private Map<String,DeliveryPartner> partnerDatabase = new HashMap<>();
+    private Map<String,DeliveryPartner> partnerDatabase;
 
     //Third one is order-partner pair database named as partnerOrderMap
     private Map<String, List<String>> partnerOrderMap = new HashMap<>();
@@ -23,7 +23,12 @@ public class OrderRepository {
     private Set<String> orderNotAssigned = new HashSet<>();
 
 
-
+    public OrderRepository() {
+        this.orderDatabase = new HashMap<>();
+        this.partnerDatabase = new HashMap<>();
+        this.partnerOrderMap = new HashMap<>();
+        this.orderNotAssigned =  new HashSet<>();
+    }
 
     public void addOrder(Order order){
         orderDatabase.put(order.getId(),order);
