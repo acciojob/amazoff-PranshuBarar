@@ -28,7 +28,6 @@ public class OrderRepository {
     public void addOrder(Order order){
         orderDatabase.put(order.getId(),order);
         orderNotAssigned.add(order.getId());
-//        orderNotDelivered.add(order.getId());
     }
 
     public void addPartner(String partnerId){
