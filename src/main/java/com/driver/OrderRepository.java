@@ -24,17 +24,6 @@ public class OrderRepository {
 
 
 
-    //No-args constructor for implicit creation of beans by Spring itself
-    public OrderRepository() {
-
-    }
-
-    public OrderRepository(Map<String, Order> orderDatabase, Map<String, DeliveryPartner> partnerDatabase, Map<String, List<String>> partnerOrderMap, Set<String> orderNotAssigned) {
-        this.orderDatabase = orderDatabase;
-        this.partnerDatabase = partnerDatabase;
-        this.partnerOrderMap = partnerOrderMap;
-        this.orderNotAssigned = orderNotAssigned;
-    }
 
     public void addOrder(Order order){
         orderDatabase.put(order.getId(),order);
