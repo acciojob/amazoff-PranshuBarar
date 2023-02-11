@@ -138,12 +138,12 @@ public class OrderRepository {
 
         String strhours = Integer.toString(hours);
         if(strhours.length()==1){
-            strhours += "0"+strhours;
+            strhours = "0"+strhours;
         }
 
         String minutes = Integer.toString(minute);
         if(minutes.length()==1){
-            minutes += "0" + minutes;
+            minutes = "0" + minutes;
         }
         return strhours + ":" + minutes;
 
